@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "finsh_config.h": "c",
+        "rtthread.h": "c",
+        "drv_uart.h": "c"
+    }
+}

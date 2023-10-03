@@ -1,0 +1,9 @@
+[submodule "tools/xfel"]
+	path = tools/xfel
+	url = https://github.com/xboot/xfel
+[submodule "lib/rt-thread"]
+	path = lib/rt-thread
+	url = https://github.com/RT-Thread/rt-thread.git
+[submodule "lib/t113-s3-hal"]
+	path = lib/t113-s3-hal
+	url = https://github.com/DrZlo13/t113-s3-hal.git
