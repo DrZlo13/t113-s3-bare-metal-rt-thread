@@ -5,9 +5,9 @@
 #include <stdint.h>
 #include <rthw.h>
 #include "board.h"
-#include "gic.h"
-
+#include <gic.h>
 #include <interrupt.h>
+#include "../lib/log.h"
 
 #define readl(addr) (*(volatile unsigned int*)(addr))
 #define writel(value, addr) (*(volatile unsigned int*)(addr) = (value))
@@ -36,25 +36,9 @@ void rt_hw_secondary_cpu_up(void) {
 }
 
 void secondary_cpu_c_start(void) {
-    // int timer_irq_number;
-
-    // timer_irq_number = aw_get_irq_num("TIMER1");
-
     rt_hw_vector_init();
-
     rt_hw_spin_lock(&_cpus_lock);
-
     arm_gic_cpu_init(0, platform_get_gic_cpu_base());
-    // arm_gic_set_cpu(0, timer_irq_number, 0x2); //timer1
-
-    // timer1_init();
-    // rt_hw_interrupt_install(timer_irq_number, rt_hw_timer1_isr, RT_NULL, "tick1");
-    // rt_hw_interrupt_umask(timer_irq_number);
-
-    rt_kprintf("Hello CPU %d\r\n", rt_hw_cpu_id());
-
-    // main();
-
     rt_system_scheduler_start();
 }
 

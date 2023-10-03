@@ -101,3 +101,22 @@ arm-none-eabi-size rtthread.elf
    text	   data	    bss	    dec	    hex	filename
  241452	   1940	  47880	 291272	  471c8	rtthread.elf
 scons: done building targets.
+
+
+initialize rti_board_end:0 done
+initialize rt_work_sys_workqueue_init:0 done
+initialize dfs_init:0 done
+initialize rt_soft_rtc_init:0 done
+initialize aio_system_init:0 done
+initialize libc_system_init:0 done
+initialize pthread_key_system_init:0 done
+initialize posix_sem_system_init:0 done
+initialize posix_mq_system_init:0 done
+initialize cplusplus_system_init:0 done
+initialize _rt_clock_time_system_init:0 done
+initialize sal_init:0 done
+initialize finsh_system_init:0 done
+
+initialize rti_board_end:0 done
+initialize dfs_init:0 done
+initialize finsh_system_init:0 done

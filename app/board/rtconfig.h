@@ -112,17 +112,17 @@
 
 /* POSIX (Portable Operating System Interface) layer */
 
-// #define RT_USING_POSIX_FS
-// #define RT_USING_POSIX_DEVIO
+#define RT_USING_POSIX_FS
+#define RT_USING_POSIX_DEVIO
 // #define RT_USING_POSIX_STDIO
-// #define RT_USING_POSIX_POLL
-// #define RT_USING_POSIX_SELECT
-// #define RT_USING_POSIX_SOCKET
+#define RT_USING_POSIX_POLL
+#define RT_USING_POSIX_SELECT
+#define RT_USING_POSIX_SOCKET
 // #define RT_USING_POSIX_TERMIOS
-// #define RT_USING_POSIX_AIO
-// #define RT_USING_POSIX_DELAY
-// #define RT_USING_POSIX_CLOCK
-// #define RT_USING_PTHREADS
+#define RT_USING_POSIX_AIO
+#define RT_USING_POSIX_DELAY
+#define RT_USING_POSIX_CLOCK
+#define RT_USING_PTHREADS
 #define PTHREAD_NUM_MAX 8
 
 /* Interprocess Communication (IPC) */

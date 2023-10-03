@@ -27,6 +27,8 @@ PROJECT("T113" C CXX ASM)
 file(GLOB CORE_SOURCES
     "app/*.c"
     "app/board/*.c"
+    "app/lib/*.c"
+    "app/lib/*/*.c"
 )
 
 include_directories(
@@ -40,6 +42,8 @@ set(SOURCES
 
 set(LINKER_SCRIPT "${CMAKE_SOURCE_DIR}/app/board/link.lds")
 set(EXECUTABLE "${PROJECT_NAME}.elf")
+set(HEX_FILE ${PROJECT_BINARY_DIR}/${PROJECT_NAME}.hex)
+set(BIN_FILE ${PROJECT_BINARY_DIR}/${PROJECT_NAME}.bin)
 
 add_compile_options(
     -march=armv7-a
@@ -57,6 +61,17 @@ add_link_options(
     -Wl,-Map=${PROJECT_NAME}.map
     -Wl,-cref
     -Wl,-u,system_vectors
+    -Wl,-u,finsh_system_init
+    -Wl,-u,rt_work_sys_workqueue_init
+    -Wl,-u,rt_soft_rtc_init
+    -Wl,-u,aio_system_init
+    -Wl,-u,libc_system_init
+    -Wl,-u,pthread_key_system_init
+    -Wl,-u,posix_sem_system_init
+    -Wl,-u,posix_mq_system_init
+    -Wl,-u,cplusplus_system_init
+    -Wl,-u,_rt_clock_time_system_init
+    -Wl,-u,sal_init
     -T ${LINKER_SCRIPT}
 )
 
@@ -65,6 +80,7 @@ add_compile_definitions(
     __RTTHREAD__
     RT_USING_NEWLIB
     _POSIX_C_SOURCE=1
+    RT_DEBUG_INIT
 )
 
 add_executable(${EXECUTABLE} ${SOURCES} ${LINKER_SCRIPT})
@@ -77,12 +93,10 @@ target_link_libraries(${EXECUTABLE} "t113-s3-hal")
 
 # target_link_libraries(${EXECUTABLE} "c")
 # target_link_libraries(${EXECUTABLE} "m")
+# target_link_libraries(${EXECUTABLE} "gcc")
 
 # Print size
 add_custom_command(TARGET ${EXECUTABLE} POST_BUILD COMMAND ${SIZE} ${EXECUTABLE})
-
-set(HEX_FILE ${PROJECT_BINARY_DIR}/${PROJECT_NAME}.hex)
-set(BIN_FILE ${PROJECT_BINARY_DIR}/${PROJECT_NAME}.bin)
 
 # Make binary file.
 add_custom_command(

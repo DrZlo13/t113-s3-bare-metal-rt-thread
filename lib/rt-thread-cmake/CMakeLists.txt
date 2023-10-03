@@ -64,26 +64,25 @@ file(GLOB_RECURSE SOURCES
     ${RT_THREAD}/components/libc/cplusplus/cxx_Thread.cpp
     ${RT_THREAD}/components/libc/cplusplus/cxx_crt.cpp
     ${RT_THREAD}/components/libc/cplusplus/cxx_crt_init.c
+    ${RT_THREAD}/components/libc/posix/delay/delay.c
 
-    # ${RT_THREAD}/components/libc/posix/delay/delay.c
     # ${RT_THREAD}/components/libc/posix/io/aio/aio.c
-    # ${RT_THREAD}/components/libc/posix/io/poll/poll.c
-    # ${RT_THREAD}/components/libc/posix/io/poll/select.c
+    ${RT_THREAD}/components/libc/posix/io/poll/poll.c
+    ${RT_THREAD}/components/libc/posix/io/poll/select.c
     ${RT_THREAD}/components/libc/posix/io/stdio/libc.c
-
-    # ${RT_THREAD}/components/libc/posix/io/termios/termios.c
-    # ${RT_THREAD}/components/libc/posix/ipc/mqueue.c
-    # ${RT_THREAD}/components/libc/posix/ipc/semaphore.c
-    # ${RT_THREAD}/components/libc/posix/pthreads/pthread.c
-    # ${RT_THREAD}/components/libc/posix/pthreads/pthread_attr.c
-    # ${RT_THREAD}/components/libc/posix/pthreads/pthread_barrier.c
-    # ${RT_THREAD}/components/libc/posix/pthreads/pthread_cond.c
-    # ${RT_THREAD}/components/libc/posix/pthreads/pthread_mutex.c
-    # ${RT_THREAD}/components/libc/posix/pthreads/pthread_rwlock.c
-    # ${RT_THREAD}/components/libc/posix/pthreads/pthread_spin.c
-    # ${RT_THREAD}/components/libc/posix/pthreads/pthread_tls.c
-    # ${RT_THREAD}/components/libc/posix/pthreads/sched.c
-    # ${RT_THREAD}/components/libc/posix/signal/posix_signal.c
+    ${RT_THREAD}/components/libc/posix/io/termios/termios.c
+    ${RT_THREAD}/components/libc/posix/ipc/mqueue.c
+    ${RT_THREAD}/components/libc/posix/ipc/semaphore.c
+    ${RT_THREAD}/components/libc/posix/pthreads/pthread.c
+    ${RT_THREAD}/components/libc/posix/pthreads/pthread_attr.c
+    ${RT_THREAD}/components/libc/posix/pthreads/pthread_barrier.c
+    ${RT_THREAD}/components/libc/posix/pthreads/pthread_cond.c
+    ${RT_THREAD}/components/libc/posix/pthreads/pthread_mutex.c
+    ${RT_THREAD}/components/libc/posix/pthreads/pthread_rwlock.c
+    ${RT_THREAD}/components/libc/posix/pthreads/pthread_spin.c
+    ${RT_THREAD}/components/libc/posix/pthreads/pthread_tls.c
+    ${RT_THREAD}/components/libc/posix/pthreads/sched.c
+    ${RT_THREAD}/components/libc/posix/signal/posix_signal.c
     ${RT_THREAD}/components/net/netdev/src/netdev.c
     ${RT_THREAD}/components/net/netdev/src/netdev_ipaddr.c
     ${RT_THREAD}/components/net/sal/dfs_net/dfs_net.c
