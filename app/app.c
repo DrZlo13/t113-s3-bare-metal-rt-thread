@@ -61,11 +61,20 @@ static void pwm_thread(void* arg) {
     }
 }
 
+void hal_assert_handler(const char* expr, const char* func, size_t line) {
+    log_error(
+        "hal", "Assertion failed: %s, function %s, file %s, line %d.", expr, func, __FILE__, line);
+    while(1) {
+        asm volatile("bkpt 0");
+    }
+}
+
 int main(void) {
     log_info("main", "Hello RT-Thread! [%s %s]", __DATE__, __TIME__);
 
     const size_t thread_num = 10;
     rt_thread_t threads[thread_num];
+    UNUSED(threads);
 
     for(size_t i = 0; i < thread_num; i++) {
         threads[i] = rt_thread_create("remote", thread, (void*)(i), 512, 20, 20);

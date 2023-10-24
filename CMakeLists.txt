@@ -25,10 +25,10 @@ find_program(XFEL NAMES xfel PATHS "${CMAKE_SOURCE_DIR}/tools/xfel")
 PROJECT("T113" C CXX ASM)
 
 file(GLOB CORE_SOURCES
-    "app/*.c"
-    "app/board/*.c"
-    "app/lib/*.c"
-    "app/lib/*/*.c"
+    "app/*.c*"
+    "app/board/*.c*"
+    "app/lib/*.c*"
+    "app/lib/*/*.c*"
 )
 
 include_directories(
@@ -44,6 +44,7 @@ set(LINKER_SCRIPT "${CMAKE_SOURCE_DIR}/app/board/link.lds")
 set(EXECUTABLE "${PROJECT_NAME}.elf")
 set(HEX_FILE ${PROJECT_BINARY_DIR}/${PROJECT_NAME}.hex)
 set(BIN_FILE ${PROJECT_BINARY_DIR}/${PROJECT_NAME}.bin)
+set(LST_FILE ${PROJECT_BINARY_DIR}/${PROJECT_NAME}.lst)
 
 add_compile_options(
     -march=armv7-a
@@ -72,6 +73,7 @@ add_link_options(
     -Wl,-u,cplusplus_system_init
     -Wl,-u,_rt_clock_time_system_init
     -Wl,-u,sal_init
+    --specs=nosys.specs # ???
     -T ${LINKER_SCRIPT}
 )
 
@@ -81,6 +83,7 @@ add_compile_definitions(
     RT_USING_NEWLIB
     _POSIX_C_SOURCE=1
     RT_DEBUG_INIT
+    HAL_ENABLE_ASSERT
 )
 
 add_executable(${EXECUTABLE} ${SOURCES} ${LINKER_SCRIPT})
@@ -111,6 +114,14 @@ add_custom_command(
     DEPENDS ${EXECUTABLE}
     COMMAND ${CMAKE_OBJCOPY} -Obinary $<TARGET_FILE:${EXECUTABLE}> ${BIN_FILE}
     COMMENT "Building ${BIN_FILE}"
+)
+
+# generate assembly listing after build
+add_custom_command(
+    TARGET ${EXECUTABLE}
+    POST_BUILD
+    COMMAND ${CMAKE_OBJDUMP} -S $<TARGET_FILE:${EXECUTABLE}> > ${LST_FILE}
+    COMMENT "Building ${LST_FILE}"
 )
 
 add_custom_target(

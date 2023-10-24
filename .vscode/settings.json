@@ -3,6 +3,17 @@
         "finsh_config.h": "c",
         "rtthread.h": "c",
         "drv_uart.h": "c",
-        "display.h": "c"
+        "display.h": "c",
+        "ranges": "cpp",
+        "*.tcc": "cpp",
+        "exception": "cpp",
+        "memory_resource": "cpp",
+        "fstream": "cpp",
+        "iosfwd": "cpp",
+        "new": "cpp",
+        "ostream": "cpp",
+        "sstream": "cpp",
+        "stop_token": "cpp",
+        "streambuf": "cpp"
     }
 }

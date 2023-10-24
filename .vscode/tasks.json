@@ -2,7 +2,7 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "CMake project",
+            "label": "CMake Debug project",
             "type": "shell",
             "command": "cd build && cmake ../CMakeLists.txt -DCMAKE_BUILD_TYPE=Debug -G \"Unix Makefiles\" -B .",
             "problemMatcher": {
@@ -17,14 +17,49 @@
             }
         },
         {
-            "label": "Build project",
+            "label": "CMake Min project",
+            "type": "shell",
+            "command": "cd build && cmake ../CMakeLists.txt -DCMAKE_BUILD_TYPE=MinSizeRel -G \"Unix Makefiles\" -B .",
+            "problemMatcher": {
+                "pattern": {
+                    "regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",
+                    "file": 1,
+                    "line": 2,
+                    "column": 3,
+                    "severity": 4,
+                    "message": 5
+                }
+            }
+        },
+        {
+            "label": "Build Debug project",
             "group": {
                 "kind": "build",
                 "isDefault": true
             },
             "type": "shell",
             "command": "make -j12 -C build",
-            "dependsOn": "CMake project",
+            "dependsOn": "CMake Debug project",
+            "problemMatcher": {
+                "pattern": {
+                    "regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",
+                    "file": 1,
+                    "line": 2,
+                    "column": 3,
+                    "severity": 4,
+                    "message": 5
+                }
+            }
+        },
+        {
+            "label": "Build Min project",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "type": "shell",
+            "command": "make -j12 -C build",
+            "dependsOn": "CMake Min project",
             "problemMatcher": {
                 "pattern": {
                     "regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",
@@ -40,18 +75,28 @@
             "label": "Clean",
             "type": "shell",
             "command": "make -C build clean",
-            "dependsOn": "CMake project",
             "problemMatcher": []
         },
         {
-            "label": "Flash",
+            "label": "Flash Debug project",
             "group": {
                 "kind": "build",
                 "isDefault": true
             },
             "type": "shell",
             "command": "make -C build flash_xfel_to_ddr",
-            "dependsOn": "CMake project",
+            "dependsOn": "CMake Debug project",
+            "problemMatcher": []
+        },
+        {
+            "label": "Flash Min project",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "type": "shell",
+            "command": "make -C build flash_xfel_to_ddr",
+            "dependsOn": "CMake Min project",
             "problemMatcher": []
         }
     ]
